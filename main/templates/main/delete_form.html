@@ -1,0 +1,18 @@
+{% extends 'main/index.html' %}
+{% load static %}
+
+{% block content %}
+
+<p>Are you sure you weant to delete '{{item}}'?</p>
+
+<form action="{% url 'main:delete_client' item.id %}" method="POST">
+
+    {% csrf_token %}
+    <a class="btn btn-info" aria-current="page" href="/">Cancel</a>
+    <button class="btn btn-danger" type='submit'>Delete</button>
+
+</form>
+
+{% endblock %}
+
+

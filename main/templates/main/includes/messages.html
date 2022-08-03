@@ -1,0 +1,7 @@
+{% if messages %}
+  {% for message in messages %}
+    <div class="toast-body bg-{{ message.tags }} position-absolute top-0 end-0 mt-5 me-3" id="toast" style="z-index: 11; border-radius: 8px;">
+      {{message}}
+    </div>       
+  {% endfor %}
+{% endif %}

@@ -1,0 +1,126 @@
+{% extends 'main/index.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="row mt-5">
+    <div class="row">
+        <div class="col-6">
+            <div class="card">
+                <h4 class="card-header font-monospace">CLIENTS</h4>
+                <div class="card-body overflow-auto" style="height: 15rem;">
+                    <a class="btn btn-primary d-grid" aria-current="page" href="{% url 'main:create_client' %}">Create Client</a>
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th scope="col-2"><div class="text-center font-monospace">Client</div></th>
+                                <th scope="col-2"><div class="text-center font-monospace">Update</div></th>
+                                <th scope="col-2"><div class="text-center font-monospace">Delete</div></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for client in clients %}
+                            <tr>
+                                <th scope="row">{{client.client_name}}</th>
+                                <td><a class="btn btn-sm btn-secondary d-grid gap-1 text-white" aria-current="page" href="{% url 'main:create_client' %}">Update</a></td>
+                                <td><a class="btn btn-sm btn-danger d-grid gap-1" aria-current="page" href="{% url 'main:delete_client' client.id %}">Delete</a></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-6">
+            <div class="card">
+                <h4 class="card-header font-monospace">PLANS</h4>
+                <div class="card-body overflow-auto" style="height: 15rem;">
+                    <a class="btn btn-primary d-grid" aria-current="page" href="{% url 'main:create_plan' %}">Create Plan</a>
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th scope="col-2"><div class="text-center font-monospace">Client</div></th>
+                                <th scope="col-2"><div class="text-center font-monospace">Plan</div></th>
+                                <th scope="col-2"><div class="text-center font-monospace">Update</div></th>
+                                <th scope="col-2"><div class="text-center font-monospace">Delete</div></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for plan in plans %}
+                            <tr>
+                                <th scope="row">{{plan.client}}</th>
+                                <td>{{plan.plan_name}}</td>
+                                <td><a class="btn btn-sm btn-secondary d-grid gap-1 text-white" aria-current="page" href="{% url 'main:create_client' %}">Update</a></td>
+                                <td><a class="btn btn-sm btn-danger d-grid gap-1" aria-current="page" href="{% url 'main:create_client' %}">Delete</a></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-6">
+           <div class="card">
+            <h4 class="card-header font-monospace">PHASES</h4>
+            <div class="card-body overflow-auto" style="height: 15rem;">
+                <a class="btn btn-primary d-grid" aria-current="page" href="{% url 'main:create_phase' %}">Create Phase</a>
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th scope="col-2"><div class="text-center font-monospace">Plan</div></th>
+                            <th scope="col-2"><div class="text-center font-monospace">Phase</div></th>
+                            <th scope="col-2"><div class="text-center font-monospace">Update</div></th>
+                            <th scope="col-2"><div class="text-center font-monospace">Delete</div></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for phase in phases %}
+                        <tr>
+                            <th scope="row">{{phase.plan}}</th>
+                            <td>{{phase.phase_name}}</td>
+                            <td><a class="btn btn-sm btn-secondary d-grid gap-1 text-white" aria-current="page" href="{% url 'main:create_client' %}">Update</a></td>
+                            <td><a class="btn btn-sm btn-danger d-grid gap-1" aria-current="page" href="{% url 'main:create_client' %}">Delete</a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            </div>
+        </div>
+    
+        <div class="col-6">
+            <div class="card">
+                <h4 class="card-header font-monospace">STRATEGIES</h4>
+                <div class="card-body overflow-auto" style="height: 15rem;">
+                    <a class="btn btn-primary d-grid" aria-current="page" href="{% url 'main:create_strategy' %}">Create strategy</a>
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th scope="col-2"><div class="text-center font-monospace">Phase</div></th>
+                                <th scope="col-2"><div class="text-center font-monospace">Strategy</div></th>
+                                <th scope="col-2"><div class="text-center font-monospace">Update</div></th>
+                                <th scope="col-2"><div class="text-center font-monospace">Delete</div></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for strategy in strategies %}
+                            <tr>
+                                <th scope="row">{{strategy.phase}}</th>
+                                <td>{{strategy.strategy_name}}</td>
+                                <td><a class="btn btn-sm btn-secondary d-grid gap-1 text-white" aria-current="page" href="{% url 'main:create_client' %}">Update</a></td>
+                                <td><a class="btn btn-sm btn-danger d-grid gap-1" aria-current="page" href="{% url 'main:create_client' %}">Delete</a></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

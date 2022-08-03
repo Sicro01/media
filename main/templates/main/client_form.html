@@ -1,0 +1,18 @@
+{% extends 'main/index.html' %}
+{% load static %}
+
+{% block content %}
+<div class="row">
+    <form action="/create_client/" method="POST">
+        {% csrf_token %}
+        {{client_form}}
+        {{plan_form}}
+        {{strategy_form}}
+        {{phase_form}}
+        <button class="btn btn-primary" type="submit">Create</button>
+    </form>
+</div>
+
+{% endblock %}
+
+
