@@ -25,7 +25,15 @@ urlpatterns = [
     path('client_delete/<str:pk>/', views.ClientDelete.as_view(), name='client_delete'),
 
     path('plan_create/', views.PlanCreate.as_view(), name='plan_create'),
-    path('delete_plan/<str:pk>/', views.deletePlan, name='delete_plan'),
-    path('create_phase/', views.createPhase, name='create_phase'),
-    path('create_strategy/', views.createStrategy, name='create_strategy'),
+    path('plan_update/<str:pk>/', views.PlanUpdate.as_view(), name='plan_update'),
+    path('plan_delete/<str:pk>/', views.PlanDelete.as_view(), name='plan_delete'),
+
+    path('phase_create/', views.PhaseCreate.as_view(), name='phase_create'),
+    path('phase_update/<str:pk>/', views.PhaseUpdate.as_view(), name='phase_update'),
+    path('phase_delete/<str:pk>/', views.PhaseDelete.as_view(), name='phase_delete'),
+
+    path('strategy_create/', views.StrategyCreate.as_view(), name='strategy_create'),
+    path('strategy_update/<str:pk>/', views.StrategyUpdate.as_view(), name='strategy_update'),
+    path('strategy_delete/<str:pk>/', views.StrategyDelete.as_view(), name='strategy_delete'),
+
 ]

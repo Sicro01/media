@@ -72,8 +72,8 @@
                         <tr>
                             <th scope="row">{{plan.client}}</th>
                             <td>{{plan.plan_name}}</td>
-                            <td><a class="btn btn-sm btn-secondary d-grid gap-1 text-white" aria-current="page" href="{% url 'main:plan_create' %}">Update</a></td>
-                            <td><a class="btn btn-sm btn-danger d-grid gap-1" aria-current="page" href="{% url 'main:plan_create' %}">Delete</a></td>
+                            <td><a class="btn btn-sm btn-secondary d-grid gap-1 text-white" aria-current="page" href="{% url 'main:plan_update' plan.id %}">Update</a></td>
+                            <td><a class="btn btn-sm btn-danger d-grid gap-1" aria-current="page" href="{% url 'main:plan_delete' plan.id %}">Delete</a></td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -81,12 +81,14 @@
             </div>
 
             <div class="tab-pane fade" role="tabpanel" id="phases">
-                <a class="btn btn-primary d-grid" aria-current="page" href="{% url 'main:client_create' %}">Create Phase</a>
+                <a class="btn btn-primary d-grid" aria-current="page" href="{% url 'main:phase_create' %}">Create Phase</a>
                 <table class="table table-sm">
                     <thead>
                         <tr>
-                            <th class="col-5"><div class="font-monospace">Plan</div></th>
-                            <th class="col-5"><div class="font-monospace">Phase</div></th>
+                            <th class="col-3"><div class="font-monospace">Plan</div></th>
+                            <th class="col-3"><div class="font-monospace">Phase</div></th>
+                            <th class="col-2"><div class="font-monospace">Phase Start Date</div></th>
+                            <th class="col-2"><div class="font-monospace">Phase End Date</div></th>
                             <th class="col-1"><div class="text-center font-monospace">Update</div></th>
                             <th class="col-1"><div class="text-center font-monospace">Delete</div></th>
                         </tr>
@@ -96,8 +98,10 @@
                         <tr>
                             <th scope="row">{{phase.plan}}</th>
                             <td>{{phase.phase_name}}</td>
-                            <td><a class="btn btn-sm btn-secondary d-grid gap-1 text-white" aria-current="page" href="{% url 'main:client_create' %}">Update</a></td>
-                            <td><a class="btn btn-sm btn-danger d-grid gap-1" aria-current="page" href="{% url 'main:client_create' %}">Delete</a></td>
+                            <td>{{phase.phase_start_date}}</td>
+                            <td>{{phase.phase_end_date}}</td>
+                            <td><a class="btn btn-sm btn-secondary d-grid gap-1 text-white" aria-current="page" href="{% url 'main:phase_update' phase.id %}">Update</a></td>
+                            <td><a class="btn btn-sm btn-danger d-grid gap-1" aria-current="page" href="{% url 'main:phase_delete' phase.id %}">Delete</a></td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -105,12 +109,14 @@
             </div>
 
             <div class="tab-pane fade" role="tabpanel" id="strategies">
-                <a class="btn btn-primary d-grid" aria-current="page" href="{% url 'main:client_create' %}">Create Strategy</a>
+                <a class="btn btn-primary d-grid" aria-current="page" href="{% url 'main:strategy_create' %}">Create Strategy</a>
                 <table class="table table-sm">
                     <thead>
                         <tr>
-                            <th class="col-5"><div class="font-monospace">Phase</div></th>
-                            <th class="col-5"><div class="font-monospace">Strategy</div></th>
+                            <th class="col-3"><div class="font-monospace">Phase</div></th>
+                            <th class="col-3"><div class="font-monospace">Strategy</div></th>
+                            <th class="col-2"><div class="font-monospace">Strategy Start Date</div></th>
+                            <th class="col-2"><div class="font-monospace">Strategy End Date</div></th>
                             <th class="col-1"><div class="text-center font-monospace">Update</div></th>
                             <th class="col-1"><div class="text-center font-monospace">Delete</div></th>
                         </tr>
@@ -120,8 +126,10 @@
                         <tr>
                             <th scope="row">{{strategy.phase}}</th>
                             <td>{{strategy.strategy_name}}</td>
-                            <td><a class="btn btn-sm btn-secondary d-grid gap-1 text-white" aria-current="page" href="{% url 'main:client_create' %}">Update</a></td>
-                            <td><a class="btn btn-sm btn-danger d-grid gap-1" aria-current="page" href="{% url 'main:client_create' %}">Delete</a></td>
+                            <td>{{strategy.strategy_start_date}}</td>
+                            <td>{{strategy.strategy_end_date}}</td>
+                            <td><a class="btn btn-sm btn-secondary d-grid gap-1 text-white" aria-current="page" href="{% url 'main:strategy_update' strategy.id %}">Update</a></td>
+                            <td><a class="btn btn-sm btn-danger d-grid gap-1" aria-current="page" href="{% url 'main:strategy_delete' strategy.id %}">Delete</a></td>
                         </tr>
                         {% endfor %}
                     </tbody>

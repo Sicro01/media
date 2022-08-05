@@ -3,14 +3,19 @@
 
 {% block content %}
 
-<p>Are you sure you weant to delete '{{client}} and all associated plans, phases etc.'?</p>
-
 <form action="" method="POST">
 
     {% csrf_token %}
     
+    <h4>Client:</h4>
+    <span>{{form.client}}</span>
+    <h4>Plan Name:</h4>
+    <span>{{form.plan_name}}</span>
+    <hr>
+    <br>
+    
     <a class="btn btn-secondary" aria-current="page" href="/">Cancel</a>
-    <button class="btn btn-danger" type='submit'>Delete</button>
+    <button class="btn btn-danger" type='submit'>Update</button>
 
 </form>
 

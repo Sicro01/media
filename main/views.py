@@ -20,18 +20,13 @@ class Dashboard(ListView):
         context['phases'] = Phase.objects.all()
         context['strategies'] = Strategy.objects.all()
         return context
-
+# Client
 class ClientCreate(CreateView):
     template_name = 'main/client_create.html'
     model = Client
     form_class = ClientForm
     context_object_name = 'client'
     success_url= reverse_lazy('main:dashboard')
-
-    def get_form_kwargs(self):
-        """ inject the extra data """
-        kwargs = super().get_form_kwargs()
-        return kwargs 
 
 class ClientDelete(DeleteView):
     template_name = 'main/client_delete.html'
@@ -42,85 +37,74 @@ class ClientDelete(DeleteView):
 class ClientUpdate(UpdateView):
     template_name = 'main/client_update.html'
     model = Client
+    form_class = ClientForm
     context_object_name = 'client'
-    fields = [
-        'client_name'
-    ]
     success_url= reverse_lazy('main:dashboard')
 
+# Plan
 class PlanCreate(CreateView):
     template_name = 'main/plan_create.html'
     model = Plan
+    form_class = PlanForm
     context_object_name = 'plan'
-    fields = [
-        'plan_name',
-        'client'
-    ]
     success_url= reverse_lazy('main:dashboard')
 
-def createPlan(request):
+class PlanDelete(DeleteView):
+    template_name = 'main/plan_delete.html'
+    model = Plan
+    context_object_name = 'plan'
+    success_url= reverse_lazy('main:dashboard')
 
-    form = PlanForm()
+class PlanUpdate(UpdateView):
+    template_name = 'main/plan_update.html'
+    model = Plan
+    form_class = PlanForm
+    context_object_name = 'plan'
+    success_url= reverse_lazy('main:dashboard')
 
-    if request.method == 'POST':
-        form = PlanForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('/')
+# Phase
+class PhaseCreate(CreateView):
+    template_name = 'main/phase_create.html'
+    model = Phase
+    form_class = PhaseForm
+    context_object_name = 'phase'
+    success_url= reverse_lazy('main:dashboard')
 
-    context = {'form': form}
-    return render(request, 'main/plan_form.html', context)
+class PhaseDelete(DeleteView):
+    template_name = 'main/phase_delete.html'
+    model = Phase
+    context_object_name = 'phase'
+    success_url= reverse_lazy('main:dashboard')
 
-def createPhase(request):
+class PhaseUpdate(UpdateView):
+    template_name = 'main/phase_update.html'
+    model = Phase
+    form_class = PhaseForm
+    context_object_name = 'phase'
+    success_url= reverse_lazy('main:dashboard')
 
-    form = PhaseForm()
+# Strategy
+class StrategyCreate(CreateView):
+    template_name = 'main/strategy_create.html'
+    model = Strategy
+    form_class = StrategyForm
+    context_object_name = 'strategy'
+    success_url= reverse_lazy('main:dashboard')
 
-    if request.method == 'POST':
-        form = PhaseForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('/')
+class StrategyDelete(DeleteView):
+    template_name = 'main/strategy_delete.html'
+    model = Strategy
+    context_object_name = 'strategy'
+    success_url= reverse_lazy('main:dashboard')
 
-    context = {'form': form}
-    return render(request, 'main/phase_form.html', context)
+class StrategyUpdate(UpdateView):
+    template_name = 'main/strategy_update.html'
+    model = Strategy
+    form_class = StrategyForm
+    context_object_name = 'strategy'
+    success_url= reverse_lazy('main:dashboard')
 
-def createStrategy(request):
 
-    form = StrategyForm()
-
-    if request.method == 'POST':
-        form = StrategyForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('/')
-
-    context = {'form': form}
-    return render(request, 'main/strategy_form.html', context)
-
-def createPlan(request):
-
-    form = PlanForm()
-
-    if request.method == 'POST':
-        form = PlanForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('/')
-
-    context = {'form': form}
-    return render(request, 'main/plan_form.html', context)
-
-def deletePlan(request, pk):
-
-    plan = Plan.objects.get(id=pk)
-
-    if request.method == 'POST':
-        plan.delete()
-        return redirect('/')
-        
-    context = {'item': plan}
-    
-    return render(request, 'main/delete_form.html', context)
 
         
 

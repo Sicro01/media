@@ -9,3 +9,5 @@ $(function() {
         $('.nav-tabs button[data-bs-target="' + activeTab + '"]').tab('show');
     }
 });
+
+$('.datepicker').datepicker();
