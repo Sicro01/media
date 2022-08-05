@@ -1,0 +1,21 @@
+{% extends 'main/index.html' %}
+{% load static %}
+
+{% block content %}
+
+<form action="" method="POST">
+
+    {% csrf_token %}
+    <h4>Client Name:</h4>
+    <span>{{form.client_name}}</span>
+    <hr>
+    <br>
+
+    <a class="btn btn-secondary" aria-current="page" href="/">Cancel</a>
+    <button class="btn btn-danger" type='submit'>Update</button>
+
+</form>
+
+{% endblock %}
+
+

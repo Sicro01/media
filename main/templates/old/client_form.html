@@ -5,10 +5,10 @@
 <div class="row">
     <form action="/create_client/" method="POST">
         {% csrf_token %}
-        {{client_form}}
-        {{plan_form}}
-        {{strategy_form}}
-        {{phase_form}}
+        {{client_form.as_p}}
+        {{plan_form.as_p}}
+        {{phase_form.as_p}}
+        {{strategy_form.as_p}}
         <button class="btn btn-primary" type="submit">Create</button>
     </form>
 </div>

@@ -1,71 +1,62 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib import messages
+from django.urls import reverse_lazy
 from .forms import ClientForm, PlanForm, PhaseForm, StrategyForm
 from .models import *
+from django.views.generic.list import ListView
+from django.views.generic import CreateView, DeleteView, UpdateView
+from django.urls import reverse_lazy
 
 # messages.warning(request, 'Watch Out!!!')
 
-def homepage(request):
+class Dashboard(ListView):
+    model = Client
+    template_name = 'main/dashboard.html'
+    context_object_name = 'clients'
 
-    clients = Client.objects.all()
-    plans = Plan.objects.all()
-    phases = Phase.objects.all()
-    strategies = Strategy.objects.all()
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['plans'] = Plan.objects.all()
+        context['phases'] = Phase.objects.all()
+        context['strategies'] = Strategy.objects.all()
+        return context
 
-    context = {'clients': clients,
-        'plans': plans,
-        'phases': phases,
-        'strategies': strategies
-        }
+class ClientCreate(CreateView):
+    template_name = 'main/client_create.html'
+    model = Client
+    form_class = ClientForm
+    context_object_name = 'client'
+    success_url= reverse_lazy('main:dashboard')
 
-    return render(request, 'main/dashboard.html', context)
+    def get_form_kwargs(self):
+        """ inject the extra data """
+        kwargs = super().get_form_kwargs()
+        return kwargs 
 
-def deleteClient(request, pk):
+class ClientDelete(DeleteView):
+    template_name = 'main/client_delete.html'
+    model = Client
+    context_object_name = 'client'
+    success_url= reverse_lazy('main:dashboard')
 
-    client = Client.objects.get(id=pk)
+class ClientUpdate(UpdateView):
+    template_name = 'main/client_update.html'
+    model = Client
+    context_object_name = 'client'
+    fields = [
+        'client_name'
+    ]
+    success_url= reverse_lazy('main:dashboard')
 
-    if request.method == 'POST':
-        client.delete()
-        return redirect('/')
-
-    context = {'item': client}
-    
-    return render(request, 'main/delete_form.html', context)
-
-def createClient(request):
-
-    client_form = ClientForm()
-    plan_form = PlanForm()
-    phase_form = PhaseForm()
-    strategy_form = StrategyForm()
-
-    if request.method == 'POST':
-        client_form = ClientForm(request.POST, instance=Client())
-        plan_form = PlanForm(request.POST, instance=Plan())
-        phase_form = PhaseForm(request.POST, instance=Phase())
-        strategy_form = StrategyForm(request.POST, instance=Strategy())
-
-        if client_form.is_valid() and plan_form.is_valid():
-            _client = client_form.save()
-            _plan = plan_form.save(commit=False)
-            _phase = phase_form.save(commit=False)
-            _strategy = strategy_form.save(commit=False)
-            _plan.client = _client
-            _plan.save()
-            _phase.plan = _plan
-            _phase.save()
-            _strategy.phase = _phase
-            _strategy.save()
-
-        return redirect('/')
-
-    context = {
-        'client_form': client_form,
-        'plan_form': plan_form,
-        'phase_form': phase_form,
-        'strategy_form': strategy_form,
-        }
-    return render(request, 'main/client_form.html', context)
+class PlanCreate(CreateView):
+    template_name = 'main/plan_create.html'
+    model = Plan
+    context_object_name = 'plan'
+    fields = [
+        'plan_name',
+        'client'
+    ]
+    success_url= reverse_lazy('main:dashboard')
 
 def createPlan(request):
 

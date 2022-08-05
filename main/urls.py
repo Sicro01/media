@@ -19,10 +19,12 @@ from . import views
 app_name = 'main'
 
 urlpatterns = [
-    path('', views.homepage, name='homepage'),
-    path('create_client/', views.createClient, name='create_client'),
-    path('delete_client/<str:pk>/', views.deleteClient, name='delete_client'),
-    path('create_plan/', views.createPlan, name='create_plan'),
+    path('', views.Dashboard.as_view(), name='dashboard'),
+    path('client_create/', views.ClientCreate.as_view(), name='client_create'),
+    path('client_update/<str:pk>/', views.ClientUpdate.as_view(), name='client_update'),
+    path('client_delete/<str:pk>/', views.ClientDelete.as_view(), name='client_delete'),
+
+    path('plan_create/', views.PlanCreate.as_view(), name='plan_create'),
     path('delete_plan/<str:pk>/', views.deletePlan, name='delete_plan'),
     path('create_phase/', views.createPhase, name='create_phase'),
     path('create_strategy/', views.createStrategy, name='create_strategy'),

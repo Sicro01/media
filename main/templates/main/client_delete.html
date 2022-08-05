@@ -3,12 +3,12 @@
 
 {% block content %}
 
-<p>Are you sure you weant to delete '{{item}}'?</p>
+<p>Are you sure you weant to delete '{{client}} and all associated plans, phases etc.'?</p>
 
-<form action="{% url 'main:delete_client' item.id %}" method="POST">
+<form action="" method="POST">
 
     {% csrf_token %}
-    <a class="btn btn-info" aria-current="page" href="/">Cancel</a>
+    <a class="btn btn-secondary" aria-current="page" href="/">Cancel</a>
     <button class="btn btn-danger" type='submit'>Delete</button>
 
 </form>
