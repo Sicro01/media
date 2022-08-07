@@ -1,4 +1,5 @@
 # from tkinter import CASCADE
+from tkinter import Widget
 from django.db import models
 import datetime
 

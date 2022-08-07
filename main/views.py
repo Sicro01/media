@@ -6,6 +6,7 @@ from .models import *
 from django.views.generic.list import ListView
 from django.views.generic import CreateView, DeleteView, UpdateView
 from django.urls import reverse_lazy
+from bootstrap_datepicker_plus.widgets import DatePickerInput
 
 # messages.warning(request, 'Watch Out!!!')
 
@@ -69,6 +70,12 @@ class PhaseCreate(CreateView):
     form_class = PhaseForm
     context_object_name = 'phase'
     success_url= reverse_lazy('main:dashboard')
+
+    # def get_form(self):
+    #     form = super().get_form()
+    #     form.fields['phase_start_date'].widget = DatePickerInput()
+    #     form.fields['phase_end_date'].widget = DatePickerInput()
+    #     return form
 
 class PhaseDelete(DeleteView):
     template_name = 'main/phase_delete.html'
