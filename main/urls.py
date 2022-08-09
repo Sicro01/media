@@ -36,4 +36,24 @@ urlpatterns = [
     path('strategy_update/<str:pk>/', views.StrategyUpdate.as_view(), name='strategy_update'),
     path('strategy_delete/<str:pk>/', views.StrategyDelete.as_view(), name='strategy_delete'),
 
+    path('country_create/', views.CountryCreate.as_view(), name='country_create'),
+    path('country_update/<str:pk>/', views.CountryUpdate.as_view(), name='country_update'),
+    path('country_delete/<str:pk>/', views.CountryDelete.as_view(), name='country_delete'),
+
+    path('channel_create/', views.ChannelCreate.as_view(), name='channel_create'),
+    path('channel_update/<str:pk>/', views.ChannelUpdate.as_view(), name='channel_update'),
+    path('channel_delete/<str:pk>/', views.ChannelDelete.as_view(), name='channel_delete'),
+
+    path('ad_create/', views.AdCreate.as_view(), name='ad_create'),
+    path('ad_update/<str:pk>/', views.AdUpdate.as_view(), name='ad_update'),
+    path('ad_delete/<str:pk>/', views.AdDelete.as_view(), name='ad_delete'),
+
+    path('targetcountry_create/', views.TargetCountryCreate.as_view(), name='targetcountry_create'),
+    path('targetcountry_update/<str:pk>/', views.TargetCountryUpdate.as_view(), name='targetcountry_update'),
+    path('targetcountry_delete/<str:pk>/', views.TargetCountryDelete.as_view(), name='targetcountry_delete'),
+
+    path('targetchannel_create/', views.TargetChannelCreate.as_view(), name='targetchannel_create'),
+    path('targetchannel_update/<str:pk>/', views.TargetChannelUpdate.as_view(), name='targetchannel_update'),
+    path('targetchannel_delete/<str:pk>/', views.TargetChannelDelete.as_view(), name='targetchannel_delete'),
+
 ]

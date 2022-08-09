@@ -21,10 +21,16 @@
                     <button class="nav-link font-monospace" id="strategies-tab" data-bs-toggle="tab" data-bs-target="#strategies" type="button" role="tab" aria-controls="home" aria-selected="true">STRATEGIES</button>                    
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link font-monospace" id="channels-tab" data-bs-toggle="tab" data-bs-target="#channels" type="button" role="tab" aria-controls="home" aria-selected="true">CHANNELS</button>
+                    <button class="nav-link font-monospace" id="targetcountries-tab" data-bs-toggle="tab" data-bs-target="#targetcountries" type="button" role="tab" aria-controls="home" aria-selected="true">TARGET COUNTRIES</button>                    
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link font-monospace" id="targetchannels-tab" data-bs-toggle="tab" data-bs-target="#targetchannels" type="button" role="tab" aria-controls="home" aria-selected="true">TARGET CHANNELS</button>                    
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link font-monospace" id="countries-tab" data-bs-toggle="tab" data-bs-target="#countries" type="button" role="tab" aria-controls="home" aria-selected="true">COUNTRIES</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link font-monospace" id="channels-tab" data-bs-toggle="tab" data-bs-target="#channels" type="button" role="tab" aria-controls="home" aria-selected="true">CHANNELS</button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link font-monospace" id="ads-tab" data-bs-toggle="tab" data-bs-target="#ads" type="button" role="tab" aria-controls="home" aria-selected="true">ADS</button>
@@ -130,6 +136,122 @@
                             <td>{{strategy.strategy_end_date}}</td>
                             <td><a class="btn btn-sm btn-secondary d-grid gap-1 text-white" aria-current="page" href="{% url 'main:strategy_update' strategy.id %}">Update</a></td>
                             <td><a class="btn btn-sm btn-danger d-grid gap-1" aria-current="page" href="{% url 'main:strategy_delete' strategy.id %}">Delete</a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="tab-pane fade" role="tabpanel" id="targetcountries">
+                <a class="btn btn-primary d-grid" aria-current="page" href="{% url 'main:targetcountry_create' %}">Create Target Country</a>
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th class="col-5"><div class="font-monospace">Strategy</div></th>
+                            <th class="col-5"><div class="font-monospace">Country</div></th>
+                            <th class="col-1"><div class="text-center font-monospace">Update</div></th>
+                            <th class="col-1"><div class="text-center font-monospace">Delete</div></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for targetcountry in targetcountries %}
+                        <tr>
+                            <th scope="row">{{targetcountry.strategy}}</th>
+                            <td>{{targetcountry.country}}</td>
+                            <td><a class="btn btn-sm btn-secondary d-grid gap-1 text-white" aria-current="page" href="{% url 'main:targetcountry_update' targetcountry.id %}">Update</a></td>
+                            <td><a class="btn btn-sm btn-danger d-grid gap-1" aria-current="page" href="{% url 'main:targetcountry_delete' targetcountry.id %}">Delete</a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="tab-pane fade" role="tabpanel" id="targetchannels">
+                <a class="btn btn-primary d-grid" aria-current="page" href="{% url 'main:targetchannel_create' %}">Create Target Channel</a>
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th class="col-4"><div class="font-monospace">Strategy</div></th>
+                            <th class="col-3"><div class="font-monospace">Country</div></th>
+                            <th class="col-3"><div class="font-monospace">Channel</div></th>
+                            <th class="col-1"><div class="text-center font-monospace">Update</div></th>
+                            <th class="col-1"><div class="text-center font-monospace">Delete</div></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for targetchannel in targetchannels %}
+                        <tr>
+                            <th scope="row">{{targetchannel.targetcountry.strategy}}</th>
+                            <td>{{targetchannel.targetcountry.country}}</td>
+                            <td>{{targetchannel.channel}}</td>
+                            <td><a class="btn btn-sm btn-secondary d-grid gap-1 text-white" aria-current="page" href="{% url 'main:targetchannel_update' targetchannel.id %}">Update</a></td>
+                            <td><a class="btn btn-sm btn-danger d-grid gap-1" aria-current="page" href="{% url 'main:targetchannel_delete' targetchannel.id %}">Delete</a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="tab-pane fade" role="tabpanel" id="countries">
+                <a class="btn btn-primary d-grid" aria-current="page" href="{% url 'main:country_create' %}">Create Country</a>
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th class="col-10"><div class="font-monospace">Country</div></th>
+                            <th class="col-1"><div class="text-center font-monospace">Update</div></th>
+                            <th class="col-1"><div class="text-center font-monospace">Delete</div></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for country in countries %}
+                        <tr>
+                            <th scope="row">{{country.country_name}}</th>
+                            <td><a class="btn btn-sm btn-secondary d-grid gap-1 text-white" aria-current="page" href="{% url 'main:country_update' country.id %}">Update</a></td>
+                            <td><a class="btn btn-sm btn-danger d-grid gap-1" aria-current="page" href="{% url 'main:country_delete' country.id %}">Delete</a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="tab-pane fade" role="tabpanel" id="channels">
+                <a class="btn btn-primary d-grid" aria-current="page" href="{% url 'main:channel_create' %}">Create Channel</a>
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th class="col-10"><div class="font-monospace">Channel</div></th>
+                            <th class="col-1"><div class="text-center font-monospace">Update</div></th>
+                            <th class="col-1"><div class="text-center font-monospace">Delete</div></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for channel in channels %}
+                        <tr>
+                            <th scope="row">{{channel.channel_name}}</th>
+                            <td><a class="btn btn-sm btn-secondary d-grid gap-1 text-white" aria-current="page" href="{% url 'main:channel_update' channel.id %}">Update</a></td>
+                            <td><a class="btn btn-sm btn-danger d-grid gap-1" aria-current="page" href="{% url 'main:channel_delete' channel.id %}">Delete</a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="tab-pane fade" role="tabpanel" id="ads">
+                <a class="btn btn-primary d-grid" aria-current="page" href="{% url 'main:ad_create' %}">Create Ad</a>
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th class="col-10"><div class="font-monospace">Ad</div></th>
+                            <th class="col-1"><div class="text-center font-monospace">Update</div></th>
+                            <th class="col-1"><div class="text-center font-monospace">Delete</div></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for ad in ads %}
+                        <tr>
+                            <th scope="row">{{ad.ad_name}}</th>
+                            <td><a class="btn btn-sm btn-secondary d-grid gap-1 text-white" aria-current="page" href="{% url 'main:ad_update' ad.id %}">Update</a></td>
+                            <td><a class="btn btn-sm btn-danger d-grid gap-1" aria-current="page" href="{% url 'main:ad_delete' ad.id %}">Delete</a></td>
                         </tr>
                         {% endfor %}
                     </tbody>

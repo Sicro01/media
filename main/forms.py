@@ -1,14 +1,12 @@
 from sqlite3 import Date
 from django import forms
 from django.forms import ModelForm
-from .models import Client, Phase, Strategy, Plan
-from bootstrap_datepicker_plus.widgets import DatePickerInput
+from .models import Client, Plan, Phase, Strategy, Country, Channel, Ad, TargetCountry, TargetChannel
 
 class DateInput(forms.DateInput):
     input_type = 'date'
 
 class ClientForm(ModelForm):
-
     class Meta:
         model = Client
         fields = ['client_name']
@@ -44,13 +42,51 @@ class StrategyForm(ModelForm):
         model = Strategy
         fields = '__all__'
         widgets = {
-                'strategy_start_date': DateInput(),
-                'strategy_end_date': DateInput()
+            'strategy_start_date': DateInput(),
+            'strategy_end_date': DateInput()
         }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['phase'].widget.attrs['autofocus'] = 'on'
-        self.fields['strategy_start_date'].widget.attrs['data-provide'] = 'datepicker'
-        self.fields['strategy_end_date'].widget.attrs['data-provide'] = 'datepicker'
 
+class CountryForm(ModelForm):
+    class Meta:
+        model = Country
+        fields = '__all__'
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['country_name'].widget.attrs['autofocus'] = 'on'
+
+class ChannelForm(ModelForm):
+    class Meta:
+        model = Channel
+        fields = '__all__'
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['channel_name'].widget.attrs['autofocus'] = 'on'
+
+class AdForm(ModelForm):
+    class Meta:
+        model = Ad
+        fields = '__all__'
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['ad_name'].widget.attrs['autofocus'] = 'on'
+
+class TargetCountryForm(ModelForm):
+    class Meta:
+        model = TargetCountry
+        fields = '__all__'
+
+    # def __init__(self, *args, **kwargs):
+    #     super().__init__(*args, **kwargs)
+    #     self.fields['strategy_name'].widget.attrs['autofocus'] = 'on'
+
+class TargetChannelForm(ModelForm):
+    class Meta:
+        model = TargetChannel
+        fields = '__all__'

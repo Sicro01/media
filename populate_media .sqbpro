@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="G:/My Drive/#what/#code/media_project/media/db.sqlite3" readonly="0" foreign_keys="0" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="0" synchronous="1"/><attached/><window><main_tabs open="structure pragmas query browser" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="125"/><column_width id="3" width="3822"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,18:mainmain_targetcountry"/><default_encoding codec=""/><browse_table_settings><table schema="main" name="auth_group" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="52"/><column index="2" value="57"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="main_channel" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="52"/><column index="2" value="135"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="main_targetchannel" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="52"/><column index="2" value="104"/><column index="3" value="155"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="main_targetcountry" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="52"/><column index="2" value="103"/><column index="3" value="108"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table></browse_table_settings></tab_browse><tab_sql><sql name="country">SELECT * FROM main_country;
+
+DELETE FROM main_country;
+
+INSERT INTO main_country (country_name)
+VALUES
+('United Kingdom')
+,('France')
+,('Germany')
+,('Poland')
+,('Spain')
+,('US')
+;
+
+SELECT * FROM main_country;</sql><sql name="channel">SELECT * FROM main_channel;
+
+DELETE FROM main_channel;
+
+INSERT INTO main_channel (channel_name)
+VALUES
+('Facebook')
+,('Twitter')
+,('Instagram')
+,('TikTok')
+,('Google Ads')
+,('YouTube')
+;
+
+SELECT * FROM main_channel;</sql><sql name="ad">SELECT * FROM main_ad;
+
+DELETE FROM main_ad;
+
+INSERT INTO main_ad (ad_name)
+VALUES
+('Ad 1')
+,('Ad 2')
+;
+
+SELECT * FROM main_ad;</sql><sql name="targetcountry">SELECT * FROM main_strategycountry;
+
+DELETE FROM main_strategycountry;
+
+INSERT INTO main_strategycountry (country_id, strategy_id)
+VALUES
+(25,18)
+;
+
+SELECT * FROM main_strategycountry;</sql><sql name="targetchannel">SELECT * FROM main_targetchannel;
+
+DELETE FROM main_targetchannel;
+
+INSERT INTO main_targetchannel (channel_id, targetcountry_id)
+VALUES
+(1,4)
+;
+
+SELECT * FROM main_targetchannel;</sql><current_tab id="4"/></tab_sql></sqlb_project>

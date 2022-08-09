@@ -1,0 +1,19 @@
+{% extends 'main/index.html' %}
+{% load static %}
+
+{% block content %}
+
+<p>Are you sure you weant to delete '{{targetcountry}}'' '?</p>
+
+<form action="" method="POST">
+
+    {% csrf_token %}
+    
+    <a class="btn btn-secondary" aria-current="page" href="/">Cancel</a>
+    <button class="btn btn-danger" type='submit'>Delete</button>
+
+</form>
+
+{% endblock %}
+
+

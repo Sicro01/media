@@ -34,24 +34,43 @@ class Strategy(models.Model):
 	def __str__(self) -> str:
 		return self.strategy_name
 
-
-class Channel(models.Model):
-	channel_name = models.CharField(max_length=200, null=True)
-	strategy = models.ForeignKey(Strategy, null=True, on_delete=models.CASCADE)
-	
-	def __str__(self) -> str:
-		return self.channel_name
-
 class Country(models.Model):
 	country_name = models.CharField(max_length=200, null=True)
-	channel = models.ForeignKey(Channel, null=True, on_delete=models.CASCADE)
+	targetcountries = models.ManyToManyField(Strategy, through='TargetCountry')
 
 	def __str__(self) -> str:
 		return self.country_name
 
+class TargetCountry(models.Model):
+	strategy = models.ForeignKey(Strategy, null=True, on_delete=models.CASCADE)
+	country = models.ForeignKey(Country, null=True, on_delete=models.CASCADE)
+	
+	def __str__(self) -> str:
+		return (f'{self.strategy}:{self.country}')
+
+class Channel(models.Model):
+	channel_name = models.CharField(max_length=200, null=True)
+	targetchannels = models.ManyToManyField(TargetCountry, through='TargetChannel')
+	
+	def __str__(self) -> str:
+		return self.channel_name
+
+class TargetChannel(models.Model):
+	targetcountry = models.ForeignKey(TargetCountry, null=True, on_delete=models.CASCADE)
+	channel = models.ForeignKey(Channel, null=True, on_delete=models.CASCADE)
+
+	def __str__(self) -> str:
+		return (f'{self.targetcountry}:{self.channel}')
+
 class Ad(models.Model):
 	ad_name = models.CharField(max_length=200, null=True)
-	country = models.ForeignKey(Country, null=True, on_delete=models.CASCADE)
 
 	def __str__(self) -> str:
 		return self.ad_name
+
+class ChannelAd(models.Model):
+	channel = models.ForeignKey(Channel, null=True, on_delete=models.CASCADE)
+	ad = models.ForeignKey(Ad, null=True, on_delete=models.CASCADE)
+	
+	def __str__(self) -> str:
+		return (f'{self.channel}:{self.ad}')
